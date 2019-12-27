@@ -15,7 +15,7 @@ if (__DEV__) {
 export default function configureStore(initialState) {
   let store = createStore(
     reducers,
-    autoRehydrate(),
+    autoRehydrate,
     initialState,
     applyMiddleware(...middlewares),
   );

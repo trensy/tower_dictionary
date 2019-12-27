@@ -1,7 +1,7 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 import SplashScreen from 'react-native-splash-screen';
-import Container from './router/container';
+import Navigation from './router/navigation';
 import configureStore from './dal/store';
 const store = configureStore();
 
@@ -12,7 +12,7 @@ class App extends React.Component {
   render() {
     return (
       <Provider store={store}>
-        <Container />
+        <Navigation />
       </Provider>
     );
   }
