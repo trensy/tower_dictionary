@@ -1,10 +1,24 @@
-import {applyMiddleware, createStore} from 'redux';
+import { applyMiddleware, createStore } from 'redux';
 import thunk from 'redux-thunk';
 import reducers from '../reducer';
 import logger from 'redux-logger';
+import { persistStore, autoRehydrate } from 'redux-persist';
 
-const middlewares = [thunk, logger];
+const middlewares = [thunk];
 
-const store = createStore(reducers, applyMiddleware(...middlewares));
+if (__DEV__) {
+  middlewares.push(logger);
+  console.disableYellowBox = true;
+  console.ignoredYellowBox = ['Warning: ...'];
+}
 
-export default store;
+export default function configureStore(initialState) {
+  let store = createStore(
+    reducers,
+    autoRehydrate(),
+    initialState,
+    applyMiddleware(...middlewares),
+  );
+  persistStore(store);
+  return store;
+}
