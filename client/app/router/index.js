@@ -1,5 +1,5 @@
 import Home from '../page/home';
 
 module.exports = {
-  Home,
+  Home, //首页
 };
